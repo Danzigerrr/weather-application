@@ -1,0 +1,34 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.container input {
+    margin-bottom: 10px;
+}
+.weather-data {
+    margin-top: 20px;
+}
+
+.chart-container {
+    margin-bottom: 20px; /* Add margin between each chart container */
+    max-width: 600px; /* Limit the maximum width of the chart container */
+    overflow-x: auto; /* Add horizontal scroll if necessary */
+}
+
+.canvas-container {
+    width: 100%;
+    height: 250px; /* Set a fixed height for the chart canvas */
+}
