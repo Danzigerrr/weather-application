@@ -5,17 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Application</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        canvas {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
@@ -72,14 +62,11 @@
                 <p>Temperature: ${weatherData.current.temperature_2m}°C</p>
                 <p>Wind Speed: ${weatherData.current.wind_speed_10m} m/s</p>
                 <h2>Hourly Forecast</h2>
-                <p>Temperature: ${weatherData.hourly.temperature_2m.join(', ')}°C</p>
-                <p>Relative Humidity: ${weatherData.hourly.relative_humidity_2m.join(', ')}</p>
-                <p>Wind Speed: ${weatherData.hourly.wind_speed_10m.join(', ')} m/s</p>
-            `;
+                          `;
     }
 
     function drawCharts(hourlyData) {
-        const timeLabels = hourlyData.time.map(time => formatTime(new Date(time)));
+        const timeLabels = hourlyData.time.map(time => formatDate(new Date(time)));
         const temperatureData = hourlyData.temperature_2m;
         const humidityData = hourlyData.relative_humidity_2m;
         const windSpeedData = hourlyData.wind_speed_10m;
@@ -106,11 +93,26 @@
                 scales: {
                     x: {
                         ticks: {
-                            display: true
+                            callback: function(value, index) {
+                                if (index % 4 === 0) {
+                                    return timeLabels[index];
+                                }
+                                else{
+                                    return '';
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Time'
                         }
                     },
                     y: {
-                        beginAtZero: false
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Temperature (°C)'
+                        }
                     }
                 }
             }
@@ -134,11 +136,26 @@
                 scales: {
                     x: {
                         ticks: {
-                            display: true
+                            callback: function(value, index) {
+                                if (index % 4 === 0) {
+                                    return timeLabels[index];
+                                }
+                                else{
+                                    return '';
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Time'
                         }
                     },
                     y: {
-                        beginAtZero: false
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Humidity (%)'
+                        }
                     }
                 }
             }
@@ -162,19 +179,36 @@
                 scales: {
                     x: {
                         ticks: {
-                            display: true
+                            callback: function(value, index) {
+                                if (index % 4 === 0) {
+                                    return timeLabels[index];
+                                }
+                                else{
+                                    return '';
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: 'Time'
                         }
                     },
                     y: {
-                        beginAtZero: false
+                        beginAtZero: false,
+                        title: {
+                            display: true,
+                            text: 'Wind Speed (m/s)'
+                        }
                     }
                 }
             }
         });
     }
 
-    function formatTime(date) {
-        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    function formatDate(date) {
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        return `${date.toDateString()} ${hours}:${minutes}`;
     }
 </script>
 </body>
