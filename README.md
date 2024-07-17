@@ -16,7 +16,7 @@ The application is deployed using Render and can be accessed at https://weather-
 - Fetch weather data based on latitude and longitude. 
 - Handle various input validations and errors gracefully. 
 - Display weather information on user-friendly charts.
-- Display current weather information and forecast for the next days.
+- Display current weather information and forecast for the next days (Temperature, Wind speed, Humidity).
 
 ![img.png](img.png)
 
