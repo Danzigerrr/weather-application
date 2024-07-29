@@ -27,7 +27,8 @@ $ npm install
 ```
 
 ## Running the app
-
+There are two methods to run the application.
+### Console
 ```bash
 # development
 $ npm run start
@@ -35,6 +36,18 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 ```
+
+### Docker
+First, build the Docker image and add the tag `nestjs-weather-app` to it.
+```bash
+docker build -t nestjs-weather-app .
+```
+Then, run the Docker container using the following command:
+```bash
+docker run --rm -p 3000:3000 nestjs-weather-app
+```
+This will start a container from the image and map port 3000 of the container to port 3000 on your local machine.
+Now you should be able to access the application at http://localhost:3000.
 
 ## Test
 
@@ -44,8 +57,10 @@ $ npm run test
 ```
 
 ## Stay in touch
+Author - Krzysztof Nazar:
+- [Linkedin](https://www.linkedin.com/in/krzysztofnazar/)
+- [GitHub](https://github.com/Danzigerrr)
 
-- Author - [Krzysztof Nazar](https://www.linkedin.com/in/krzysztofnazar/)
 
 ## License
 
